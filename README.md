@@ -2,7 +2,7 @@
 
 This is a custom made application that will allow users to search for the current weather in the city of their choice. The app fetches the data from OpenWeather and Unsplash API, provides the current temperature and other weather data and then randomizes a photo related to inputted city. 
 
-<!-- ![Keane Chalk Art](https://github.com/kimnivore/keanes_nft_fe/blob/main/src/assets/KeanesArt.png?raw=true) -->
+![Kim's Weather App](https://github.com/kimnivore/weather-app/blob/main/src/assets/Weather-app.png?raw=true)
 
 ## Getting Started
 These instructions will get you a copy of the project running on your local machine for development and testing purposes.
