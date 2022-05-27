@@ -9,13 +9,13 @@ export default function App() {
   const WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const UNSPLASH_API_KEY = process.env.REACT_APP_UNSPLASH_API_KEY;
 
-  const [locations, setLocations] = useState('San Francisco');
+  const [location, setLocation] = useState('San Francisco');
   const [weather, setWeather] = useState({});
   const [photos, setPhotos] = useState({});
 
 
   useEffect(() => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${locations}&APPID=${WEATHER_API_KEY}&units=imperial`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       console.log(res);
       setWeather(res.data)
@@ -25,20 +25,20 @@ export default function App() {
       alert('There has been an error. Please re-enter the location.')
     })
 
-    axios.get(`https://api.unsplash.com/search/photos?query=${locations}&client_id=${UNSPLASH_API_KEY}`)
+    axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
     .then(res => {
       console.log(res); 
-      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)]);
+      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
     })
     .catch(err => {
       console.log(err);
     })
 
-  }, []);
+  }, [location]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${locations}&APPID=${WEATHER_API_KEY}&units=imperial`)
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data)
     })
@@ -47,9 +47,9 @@ export default function App() {
       alert('There has been an error. Please re-enter the location.')
     })
 
-    axios.get(`https://api.unsplash.com/search/photos?query=${locations}&client_id=${UNSPLASH_API_KEY}`)
+    axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
     .then(res => {
-      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)]);
+      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
     })
     .catch(err => {
       console.log(err);
@@ -78,12 +78,12 @@ export default function App() {
         <p className="weather-icon">{(weather.weather[0].description)[0].toUpperCase() + (weather.weather[0].description).substring(1) } 
         <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather icon'/>
         </p> 
-        <img className="city-image" src={photos.urls.raw} alt={photos.alt_description} />
+        <img className="city-image" src={photos} alt='location' />
         <div className='search'>
           <input
             type="text"
-            value={locations}
-            onChange={(e) => setLocations(e.target.value)}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
             placeholder="Enter location"
             className="location"
           />
