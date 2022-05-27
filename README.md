@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a custom made application that will allow users to look-up the current weather forecast in the city of their choice. The app fetches data from Unsplash API and randomizes a photo related to the user's inputted city. 
 
-## Available Scripts
+<!-- ![Keane Chalk Art](https://github.com/kimnivore/keanes_nft_fe/blob/main/src/assets/KeanesArt.png?raw=true) -->
 
-In the project directory, you can run:
+## Getting Started
+These instructions will get you a copy of the project running on your local machine for development and testing purposes.
+## Installing
+1. Get free API Keys:
+    Photos: https://unsplash.com/developers
+    Weather: https://openweathermap.org/api
+2. Enter your API into a .env file.
+3. Run `npm install` at the root of your directory
+4. Run `npm run start` to start the project
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Deployment
+<!-- - [https://keanes-nft-collection.vercel.app/](https://keanes-nft-collection.vercel.app/) -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Built With
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Axios](https://axios-http.com/) - Promise based HTTP client for browser and node.js
+- [Styled Components](https://www.styled-components.com/) - Styling library for React components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Author
+|                                     [**Kim Nguyen**](https://github.com/kimnivore)                                    | 
+| :-------------------------------------------------------------------------------------------------------------------: | 
+|     [<img src="https://avatars.githubusercontent.com/u/91563653?v=4" width="80">](https://github.com/kimnivore)       | 
+|              [<img src="https://github.com/favicon.ico" width="15"> Github](https://github.com/kimnivore)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> LinkedIn](https://www.linkedin.com/in/kimnguyen79/)   |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## License
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project is licensed under the MIT License
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
