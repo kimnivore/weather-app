@@ -56,20 +56,20 @@ export default function App() {
     })
   }
 
-  const backgroundColor = (temp) => {
-    let color='rgba(244,244,244,0.4)'
+  // const backgroundColor = (temp) => {
+  //   let color='rgba(244,244,244,0.4)'
   
-    if(weather.main.temp > 0 && weather.main.temp <= 40){
-      color='rgba(50,97,214, 0.4)'
-    }else if(weather.main.temp > 40 && weather.main.temp <= 60){
-      color='rgba(244,244,244, 0.4)'
-    }else if(weather.main.temp > 60 && weather.main.temp <= 80){
-      color='rgba(244,204,0, 0.4)'
-    }else if(weather.main.temp > 80){
-      color='rgba(216,128,48, 0.4)'
-    };
-    (AppContainer).css('background',color)
-  };
+  //   if(weather.main.temp > 0 && weather.main.temp <= 40){
+  //     color='rgba(50,97,214, 0.4)'
+  //   }else if(weather.main.temp > 40 && weather.main.temp <= 60){
+  //     color='rgba(244,244,244, 0.4)'
+  //   }else if(weather.main.temp > 60 && weather.main.temp <= 80){
+  //     color='rgba(244,204,0, 0.4)'
+  //   }else if(weather.main.temp > 80){
+  //     color='rgba(216,128,48, 0.4)'
+  //   };
+  //   (AppContainer).css('background',color)
+  // };
   
   return (
     <AppContainer>
@@ -90,9 +90,9 @@ export default function App() {
         </div>
 
         <div className='weather'>
-          <p className="temp">Current Temperature: {(weather.main.temp).toFixed()} &deg;F</p>
-          <p className="temp">Humidity: {weather.main.humidity}%</p>
-          <p className="temp">Wind speed: {weather.wind.speed} mph</p>
+          <p className="temp">Temperature: <b>{(weather.main.temp).toFixed()} &deg;F </b></p>
+          <p className="temp">Humidity: <b>{weather.main.humidity} % </b></p>
+          <p className="temp">Wind speed: <b>{weather.wind.speed} mph </b></p>
         </div>
     </AppContainer>
   );
@@ -103,21 +103,32 @@ const AppContainer = styled.div`
 display: flex;
 flex-direction: column;
 text-align: center;
-margin: auto;
-border: 1px solid #f038ff;
+margin: 20px auto;
 width: 50%;
-background-color: {backgroundColor};
-border-radius: 5%;
+background-color: white;
+
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(4px);
+border-radius: 5px;
+border: 1px solid rgba(255, 255, 255, 0.18);
 
 h1 {
   font-size: 2.5rem;
   color: #f038ff;
   margin-bottom: 0;
+
+}
+
+.weather {
+  margin: 20px;
 }
 .temp {
   font-size: 1rem;
   color: black;
-  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  margin: auto;
 }
 .weather-icon {
   width: auto;
@@ -128,11 +139,21 @@ h1 {
   margin: 0;
 }
 .city-image{
-  width: 50%;
+  max-height: 300px;
   margin: 20px auto;
-  border-radius: 5%;
+  border-radius: 10%;
   box-shadow: 0 5px 10px rgb(0 0 0 / 0.2);
 }
+button{
+  border-radius: 5px;
+  background: #a9def9;
+  padding: 10px;
+}
+input {
+  border-radius: 5px;
+  padding: 10px;
+}
+
 
 `
 
