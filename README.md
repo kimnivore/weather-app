@@ -16,7 +16,7 @@ These instructions will get you a copy of the project running on your local mach
 
 
 ## Deployment
-<!-- - [https://keanes-nft-collection.vercel.app/](https://keanes-nft-collection.vercel.app/) -->
+- [https://weather-app-kimnivore.vercel.app/](https://weather-app-kimnivore.vercel.app/)
 
 
 ## Built With
