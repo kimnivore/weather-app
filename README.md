@@ -1,6 +1,6 @@
 # Weather App
 
-This is a custom made application that will allow users to look-up the current weather forecast in the city of their choice. The app fetches data from Unsplash API and randomizes a photo related to the user's inputted city. 
+This is a custom made application that will allow users to search for the current weather in the city of their choice. The app fetches the data from OpenWeather and Unsplash API, provides the current temperature and other weather data and then randomizes a photo related to inputted city. 
 
 <!-- ![Keane Chalk Art](https://github.com/kimnivore/keanes_nft_fe/blob/main/src/assets/KeanesArt.png?raw=true) -->
 
@@ -23,7 +23,6 @@ These instructions will get you a copy of the project running on your local mach
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Axios](https://axios-http.com/) - Promise based HTTP client for browser and node.js
 - [Styled Components](https://www.styled-components.com/) - Styling library for React components
-
 
 
 ## Author

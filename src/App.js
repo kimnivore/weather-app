@@ -34,7 +34,7 @@ export default function App() {
       console.log(err);
     })
 
-  }, [locations]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,11 +55,29 @@ export default function App() {
       console.log(err);
     })
   }
+
+  const backgroundColor = (temp) => {
+    let color='rgba(244,244,244,0.4)'
+  
+    if(weather.main.temp > 0 && weather.main.temp <= 40){
+      color='rgba(50,97,214, 0.4)'
+    }else if(weather.main.temp > 40 && weather.main.temp <= 60){
+      color='rgba(244,244,244, 0.4)'
+    }else if(weather.main.temp > 60 && weather.main.temp <= 80){
+      color='rgba(244,204,0, 0.4)'
+    }else if(weather.main.temp > 80){
+      color='rgba(216,128,48, 0.4)'
+    };
+    (AppContainer).css('background',color)
+  };
   
   return (
     <AppContainer>
-        <h1>{(weather.name)}</h1>
-        <img className="image" src={photos} alt="Your selected location" />
+        <h1>{(weather.name)} </h1>
+        <p className="weather-icon">{(weather.weather[0].description)[0].toUpperCase() + (weather.weather[0].description).substring(1) } 
+        <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather icon'/>
+        </p>
+        <img className="city-image" src={photos} alt="Your selected location" />
         <div className='search'>
           <input
             type="text"
@@ -68,13 +86,11 @@ export default function App() {
             placeholder="Enter location"
             className="location"
           />
-          <button onClick={handleSubmit}>Search Location </button>
+          <button onClick={handleSubmit}>Search</button>
         </div>
 
         <div className='weather'>
-          <p className="temp">Forecast: {weather.weather[0].description}</p>
           <p className="temp">Current Temperature: {(weather.main.temp).toFixed()} &deg;F</p>
-          <p className="temp">Real-feel Temperature: {(weather.main.feels_like).toFixed()} &deg;F</p>
           <p className="temp">Humidity: {weather.main.humidity}%</p>
           <p className="temp">Wind speed: {weather.wind.speed} mph</p>
         </div>
@@ -88,34 +104,36 @@ display: flex;
 flex-direction: column;
 text-align: center;
 margin: auto;
-padding: 20px;
 border: 1px solid #f038ff;
-width: 30%;
-background-color: white;
+width: 50%;
+background-color: {backgroundColor};
+border-radius: 5%;
 
 h1 {
   font-size: 2.5rem;
   color: #f038ff;
+  margin-bottom: 0;
 }
-p {
+.temp {
   font-size: 1rem;
   color: black;
   font-weight: bold;
 }
+.weather-icon {
+  width: auto;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
-img {
+.city-image{
   width: 50%;
   margin: 20px auto;
   border-radius: 5%;
   box-shadow: 0 5px 10px rgb(0 0 0 / 0.2);
 }
-.search{
-/* display: flex;
-flex-direction: column;
-justify-content: center;
-margin: auto;
-width: 30%; */
-}
+
 `
 
 
