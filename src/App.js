@@ -15,29 +15,34 @@ export default function App() {
 
 
   useEffect(() => {
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
-    .then(res => {
-      console.log(res);
-      setWeather(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-      alert('There has been an error. Please re-enter the location.')
-    })
+    handleSubmit();
+    // axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
+    // .then(res => {
+    //   console.log(res);
+    //   setWeather(res.data);
+      
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    //   alert('There has been an error. Please re-enter the location.')
+    // })
 
-    axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
-    .then(res => {
-      console.log(res); 
-      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    // axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
+    // .then(res => {
+    //   console.log(res); 
+    //   setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
+     
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
 
-  }, [location]);
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+
+  const handleSubmit = () => {
+    // e.preventDefault();
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data)
@@ -55,28 +60,15 @@ export default function App() {
       console.log(err);
     })
   }
-
- 
-  // const backgroundColor = (temp) => {
-  //   let color='rgba(244,244,244,0.4)'
-  
-  //   if(weather.main.temp > 0 && weather.main.temp <= 40){
-  //     color='rgba(50,97,214, 0.4)'
-  //   }else if(weather.main.temp > 40 && weather.main.temp <= 60){
-  //     color='rgba(244,244,244, 0.4)'
-  //   }else if(weather.main.temp > 60 && weather.main.temp <= 80){
-  //     color='rgba(244,204,0, 0.4)'
-  //   }else if(weather.main.temp > 80){
-  //     color='rgba(216,128,48, 0.4)'
-  //   };
-  //   (AppContainer).css('background',color)
-  // };
-  
+  const temp = weather?.main?.temp.toFixed();
+  const humidity = weather?.main?.humidity;
+  const wind = weather?.wind?.speed.toFixed();
   return (
+    
     <AppContainer>
         <h1>{(weather.name)} </h1>
-        <p className="weather-icon">{(weather.weather[0].description)[0].toUpperCase() + (weather.weather[0].description).substring(1) } 
-        <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather icon'/>
+        <p className="weather-icon">{ (weather.weather[0].description)[0].toUpperCase() + (weather.weather?.[0].description).substring(1) } 
+          <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather icon'/>
         </p> 
         <img className="city-image" src={photos} alt='location' />
         <div className='search'>
@@ -91,9 +83,9 @@ export default function App() {
         </div>
 
         <div className='weather'>
-          <p className="temp">Temperature: <b>{(weather.main.temp).toFixed()} &deg;F </b></p>
-          <p className="temp">Humidity: <b>{weather.main.humidity} % </b></p>
-          <p className="temp">Wind speed: <b>{(weather.wind.speed).toFixed()} mph </b></p>
+          <p className="temp">Temperature: <b>{temp} &deg;F </b></p>
+          <p className="temp">Humidity: <b>{humidity} % </b></p>
+          <p className="temp">Wind speed: <b>{wind} mph </b></p>
         </div>
     </AppContainer>
   );
