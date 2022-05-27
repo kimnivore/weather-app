@@ -11,7 +11,7 @@ export default function App() {
 
   const [locations, setLocations] = useState('San Francisco');
   const [weather, setWeather] = useState({});
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState({});
 
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function App() {
     axios.get(`https://api.unsplash.com/search/photos?query=${locations}&client_id=${UNSPLASH_API_KEY}`)
     .then(res => {
       console.log(res); 
-      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
+      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)]);
     })
     .catch(err => {
       console.log(err);
@@ -49,13 +49,14 @@ export default function App() {
 
     axios.get(`https://api.unsplash.com/search/photos?query=${locations}&client_id=${UNSPLASH_API_KEY}`)
     .then(res => {
-      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
+      setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)]);
     })
     .catch(err => {
       console.log(err);
     })
   }
 
+ 
   // const backgroundColor = (temp) => {
   //   let color='rgba(244,244,244,0.4)'
   
@@ -76,8 +77,8 @@ export default function App() {
         <h1>{(weather.name)} </h1>
         <p className="weather-icon">{(weather.weather[0].description)[0].toUpperCase() + (weather.weather[0].description).substring(1) } 
         <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather icon'/>
-        </p>
-        <img className="city-image" src={photos} alt="Your selected location" />
+        </p> 
+        <img className="city-image" src={photos.urls.raw} alt={photos.alt_description} />
         <div className='search'>
           <input
             type="text"
@@ -92,7 +93,7 @@ export default function App() {
         <div className='weather'>
           <p className="temp">Temperature: <b>{(weather.main.temp).toFixed()} &deg;F </b></p>
           <p className="temp">Humidity: <b>{weather.main.humidity} % </b></p>
-          <p className="temp">Wind speed: <b>{weather.wind.speed} mph </b></p>
+          <p className="temp">Wind speed: <b>{(weather.wind.speed).toFixed()} mph </b></p>
         </div>
     </AppContainer>
   );
@@ -105,7 +106,7 @@ flex-direction: column;
 text-align: center;
 margin: 20px auto;
 width: 50%;
-background-color: white;
+background-color: #f8f8ff;
 
 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 backdrop-filter: blur(10px);
@@ -146,7 +147,7 @@ h1 {
 }
 button{
   border-radius: 5px;
-  background: #a9def9;
+  background: #ebf7f7;
   padding: 10px;
 }
 input {
