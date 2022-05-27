@@ -46,6 +46,7 @@ export default function App() {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data)
+      console.log(res)
     })
     .catch(err => {
       console.log(err);
@@ -63,13 +64,17 @@ export default function App() {
   const temp = weather?.main?.temp.toFixed();
   const humidity = weather?.main?.humidity;
   const wind = weather?.wind?.speed.toFixed();
+  // const icon = weather?.weather[0]?.main;
   return (
     
     <AppContainer>
         <h1>{(weather.name)} </h1>
-        <p className="weather-icon">{ (weather.weather[0].description)[0].toUpperCase() + (weather.weather?.[0].description).substring(1) } 
+        {/* <p className="weather-icon">{icon}
+          <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather?.weather[0]?.icon}@2x.png`} alt='weather icon'/>
+        </p>  */}
+        {/* <p className="weather-icon">{ (weather.weather[0].description)[0].toUpperCase() + (weather.weather?.[0].description).substring(1) } 
           <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather icon'/>
-        </p> 
+        </p>  */}
         <img className="city-image" src={photos} alt='location' />
         <div className='search'>
           <input
