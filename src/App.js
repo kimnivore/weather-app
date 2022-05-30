@@ -101,7 +101,7 @@ display: flex;
 flex-direction: column;
 text-align: center;
 margin: 20px auto;
-width: 50%;
+width: 90%;
 background-color: #f8f8ff;
 
 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -150,7 +150,15 @@ input {
   border-radius: 5px;
   padding: 10px;
 }
-
+@media (max-width: 820px) {
+  .city-image {
+    max-height: 200px;
+  }
+@media (max-width: 300px) {
+  .city-image {
+    max-height: 100px;
+  }
+}
 
 `
 
