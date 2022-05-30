@@ -12,14 +12,15 @@ export default function App() {
   const [location, setLocation] = useState('San Francisco');
   const [weather, setWeather] = useState({});
   const [photos, setPhotos] = useState({});
+  const [description, setDescription] = useState([])
 
 
   useEffect(() => {
     // handleSubmit();
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
-      console.log(res);
       setWeather(res.data);
+      setDescription(res.data.weather[0]);
     })
     .catch(err => {
       console.log(err)
@@ -28,7 +29,6 @@ export default function App() {
 
     axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
     .then(res => {
-      console.log(res); 
       setPhotos(res.data.results[Math.floor(Math.random() * res.data.results.length)].urls.raw);
     })
     .catch(err => {
@@ -44,7 +44,7 @@ export default function App() {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data)
-      console.log(res)
+      setDescription(res.data.weather[0])
     })
     .catch(err => {
       console.log(err);
@@ -71,9 +71,9 @@ export default function App() {
       
         <h1>{(weather.name)} </h1>
         <h2>Weather</h2>
-        {/* <p className="weather-icon">{icon}
-          <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`} alt='weather icon'/>
-        </p>  */}
+        <p className="weather-icon">{description.main}
+          <img className='weather-icon' src={`http://openweathermap.org/img/wn/${description.icon}@2x.png`} alt='weather icon'/>
+        </p> 
 
     
         <img className="city-image" src={photos} alt='location' />
