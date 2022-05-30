@@ -62,7 +62,7 @@ export default function App() {
   const temp = weather?.main?.temp.toFixed();
   const humidity = weather?.main?.humidity;
   const wind = weather?.wind?.speed.toFixed();
-  const icon = weather?.weather[0].main;
+  // const icon = weather?.weather[0].main;
 
 
   return (
@@ -71,9 +71,9 @@ export default function App() {
       
         <h1>{(weather.name)} </h1>
         <h2>Weather</h2>
-        <p className="weather-icon">{icon}
+        {/* <p className="weather-icon">{icon}
           <img className='weather-icon' src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`} alt='weather icon'/>
-        </p> 
+        </p>  */}
 
     
         <img className="city-image" src={photos} alt='location' />
