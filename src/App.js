@@ -16,7 +16,7 @@ export default function App() {
 
 
   useEffect(() => {
-    // handleSubmit();
+    handleSubmit();
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data);
@@ -24,7 +24,7 @@ export default function App() {
     })
     .catch(err => {
       console.log(err)
-      alert('There has been an error. Please re-enter the location.')
+      alert('There has been an error. Please select another city.')
     })
 
     axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
@@ -39,8 +39,7 @@ export default function App() {
 
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data)
@@ -48,7 +47,7 @@ export default function App() {
     })
     .catch(err => {
       console.log(err);
-      alert('There has been an error. Please re-enter the location.')
+      alert('There has been an error. Please select another city.')
     })
 
     axios.get(`https://api.unsplash.com/search/photos?query=${location}&client_id=${UNSPLASH_API_KEY}`)
@@ -59,23 +58,15 @@ export default function App() {
       console.log(err);
     })
   }
-  const temp = weather?.main?.temp.toFixed();
-  const humidity = weather?.main?.humidity;
-  const wind = weather?.wind?.speed.toFixed();
-  // const icon = weather?.weather[0].main;
-
 
   return (
     
     <AppContainer>
-      
         <h1>{(weather.name)} </h1>
-        <h2>Weather</h2>
+        <h2>Weather Today</h2>
         <p className="weather-icon">{description.main}
           <img className='weather-icon' src={`http://openweathermap.org/img/wn/${description.icon}@2x.png`} alt='weather icon'/>
         </p> 
-
-    
         <img className="city-image" src={photos} alt='location' />
         <div className='search'>
           <input
@@ -87,11 +78,10 @@ export default function App() {
           />
           <button onClick={handleSubmit}>Search</button>
         </div>
-
         <div className='weather'>
-          <p className="temp">Temperature: <b>{temp} &deg;F </b></p>
-          <p className="temp">Humidity: <b>{humidity} % </b></p>
-          <p className="temp">Wind speed: <b>{wind} mph </b></p>
+          <p className="temp">Temperature: <b>{weather?.main?.temp.toFixed()} &deg;F </b></p>
+          <p className="temp">Humidity: <b>{weather?.main?.humidity} % </b></p>
+          <p className="temp">Wind speed: <b>{weather?.wind?.speed.toFixed()} mph </b></p>
         </div>
     </AppContainer>
   );
@@ -103,9 +93,8 @@ display: flex;
 flex-direction: column;
 text-align: center;
 margin: 20px auto;
-width: 90%;
+width: 60%;
 background-color: #f8f8ff;
-
 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 backdrop-filter: blur(10px);
 -webkit-backdrop-filter: blur(4px);
@@ -116,9 +105,15 @@ h1 {
   font-size: 2.5rem;
   color: #f038ff;
   margin-bottom: 0;
-
 }
-
+.weather-icon {
+  width: auto;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
 .weather {
   margin: 20px;
 }
@@ -126,16 +121,7 @@ h1 {
   font-size: 1rem;
   color: black;
   text-align: center;
-  padding: 5px;
   margin: auto;
-}
-.weather-icon {
-  width: auto;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
 }
 .city-image{
   max-height: 300px;
@@ -145,20 +131,23 @@ h1 {
 }
 button{
   border-radius: 5px;
-  background: #ebf7f7;
+  background: #a9def9;
   padding: 10px;
+  margin: 5px;
 }
 input {
   border-radius: 5px;
   padding: 10px;
 }
 @media (max-width: 820px) {
+  width: 80%;
   .city-image {
-    max-height: 200px;
+    width: 70%;
   }
-@media (max-width: 300px) {
+@media (max-width: 580px) {
+  width: 90%;
   .city-image {
-    max-height: 100px;
+    width: 80%;
   }
 }
 
