@@ -17,7 +17,6 @@ export default function App() {
   useEffect(() => {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
-      console.log(res);
       setWeather(res.data);
       setDescription(res.data.weather[0]);
     })
@@ -84,17 +83,13 @@ export default function App() {
           <button onClick={handleSubmit}>Search Locations</button>
         </div>
         <img className="city-image" src={photos} alt='location' />
- 
         <div className='weather'>
           <p className="temp">High: <b>{weather?.main?.temp_max.toFixed()} &deg;F </b> / Low: <b> {weather?.main?.temp_min.toFixed()} &deg;F </b></p>
           <p className="temp">Humidity: <b>{weather?.main?.humidity} % </b></p>
           <p className="temp">Wind speed: <b>{weather?.wind?.speed.toFixed()} mph {windDirection(weather?.wind?.deg)}</b></p>
         </div>
-
-     
     </AppContainer>
   );
-
 }
 
 const AppContainer = styled.div`
@@ -131,6 +126,7 @@ h1 {
   color: black;
   text-align: center;
   margin: auto;
+  padding: 5px;
 }
 .city-image{
   max-height: 300px;
