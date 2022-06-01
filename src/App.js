@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import './App.css';
 
 
-
 export default function App() {
   const WEATHER_API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const UNSPLASH_API_KEY = process.env.REACT_APP_UNSPLASH_API_KEY;
@@ -16,9 +15,9 @@ export default function App() {
 
 
   useEffect(() => {
-    handleSubmit();
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
+      console.log(res);
       setWeather(res.data);
       setDescription(res.data.weather[0]);
     })
@@ -34,12 +33,12 @@ export default function App() {
     .catch(err => {
       console.log(err);
     })
-
   }, []);
 
 
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
       setWeather(res.data)
@@ -59,15 +58,21 @@ export default function App() {
     })
   }
 
+  function windDirection(degrees) {
+    const value = Math.floor(degrees / 45) % 8;
+    let directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+      return directions[value];
+  }
+
   return (
     
     <AppContainer>
-        <h1>{(weather.name)} </h1>
-        <h2>Weather Today</h2>
+        <h1>Weather Today</h1>
+        <h2>{weather.name} </h2>
+        <p className="weather-icon"><b>{weather?.main?.temp.toFixed()} &deg;F </b></p>
         <p className="weather-icon">{description.main}
           <img className='weather-icon' src={`http://openweathermap.org/img/wn/${description.icon}@2x.png`} alt='weather icon'/>
         </p> 
-        <img className="city-image" src={photos} alt='location' />
         <div className='search'>
           <input
             type="text"
@@ -76,13 +81,17 @@ export default function App() {
             placeholder="Enter location"
             className="location"
           />
-          <button onClick={handleSubmit}>Search</button>
+          <button onClick={handleSubmit}>Search Locations</button>
         </div>
+        <img className="city-image" src={photos} alt='location' />
+ 
         <div className='weather'>
-          <p className="temp">Temperature: <b>{weather?.main?.temp.toFixed()} &deg;F </b></p>
+          <p className="temp">High: <b>{weather?.main?.temp_max.toFixed()} &deg;F </b> / Low: <b> {weather?.main?.temp_min.toFixed()} &deg;F </b></p>
           <p className="temp">Humidity: <b>{weather?.main?.humidity} % </b></p>
-          <p className="temp">Wind speed: <b>{weather?.wind?.speed.toFixed()} mph </b></p>
+          <p className="temp">Wind speed: <b>{weather?.wind?.speed.toFixed()} mph {windDirection(weather?.wind?.deg)}</b></p>
         </div>
+
+     
     </AppContainer>
   );
 
