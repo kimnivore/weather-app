@@ -17,6 +17,7 @@ export default function App() {
   useEffect(() => {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${WEATHER_API_KEY}&units=imperial`)
     .then(res => {
+      console.log(res);
       setWeather(res.data);
       setDescription(res.data.weather[0]);
     })
@@ -63,11 +64,21 @@ export default function App() {
       return directions[value];
   }
 
+  function dateTime(dt) {
+    const date = new Date(dt * 1000);
+    const hours = date.getHours();
+    const minutes =  '0' + date.getMinutes();
+    const seconds = '0' + date.getSeconds();
+    const time = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+    return time;
+  }
+
   return (
     
     <AppContainer>
         <h1>Weather Today</h1>
         <h2>{weather.name} </h2>
+        <p>Local Time: <b>{dateTime(weather.dt)}</b></p>
         <p className="weather-icon"><b>{weather?.main?.temp.toFixed()} &deg;F </b></p>
         <p className="weather-icon">{description.main}
           <img className='weather-icon' src={`http://openweathermap.org/img/wn/${description.icon}@2x.png`} alt='weather icon'/>
@@ -108,6 +119,9 @@ border: 1px solid rgba(255, 255, 255, 0.18);
 h1 {
   font-size: 2.5rem;
   color: #f038ff;
+  margin-bottom: 0;
+}
+h2 {
   margin-bottom: 0;
 }
 .weather-icon {
