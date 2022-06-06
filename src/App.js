@@ -78,7 +78,6 @@ export default function App() {
     <AppContainer>
         <h1>Weather Today</h1>
         <h2>{weather.name} </h2>
-        <p>Local Time: <b>{dateTime(weather.dt)}</b></p>
         <p className="weather-icon"><b>{weather?.main?.temp.toFixed()} &deg;F </b></p>
         <p className="weather-icon">{description.main}
           <img className='weather-icon' src={`http://openweathermap.org/img/wn/${description.icon}@2x.png`} alt='weather icon'/>
@@ -95,6 +94,7 @@ export default function App() {
         </div>
         <img className="city-image" src={photos} alt='location' />
         <div className='weather'>
+          <p className="temp">Local Time: <b>{dateTime(weather.dt)}</b></p>
           <p className="temp">High: <b>{weather?.main?.temp_max.toFixed()} &deg;F </b> / Low: <b> {weather?.main?.temp_min.toFixed()} &deg;F </b></p>
           <p className="temp">Humidity: <b>{weather?.main?.humidity} % </b></p>
           <p className="temp">Wind speed: <b>{weather?.wind?.speed.toFixed()} mph {windDirection(weather?.wind?.deg)}</b></p>
